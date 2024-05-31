@@ -1,5 +1,5 @@
 {
-  "originHash" : "80e20b1a1b4052de30c800834ab7264910964115f3641c5fbc5e654ff8d8a841",
+  "originHash" : "daafbf0e02f6444a38d48fd0d84c3fe13408c0f5b868847302224ce12dfcca2f",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -11,12 +11,39 @@
       }
     },
     {
+      "identity" : "gifimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/igorcferreira/GIFImage",
+      "state" : {
+        "revision" : "a49be72485fa4cf6ddf9da3a8b6b4efd3f8e97f8",
+        "version" : "1.1.2"
+      }
+    },
+    {
+      "identity" : "gsplayer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wxxsw/GSPlayer.git",
+      "state" : {
+        "revision" : "706fc28fcc8e33607993903eca82d9f6c7c3f6d2",
+        "version" : "0.2.27"
+      }
+    },
+    {
       "identity" : "kingfisher",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/onevcat/Kingfisher",
       "state" : {
         "revision" : "5b92f029fab2cce44386d28588098b5be0824ef5",
         "version" : "7.11.0"
+      }
+    },
+    {
+      "identity" : "videoplayer",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/wxxsw/VideoPlayer",
+      "state" : {
+        "revision" : "0a271928849292713daf471398a2a9185f28709c",
+        "version" : "1.2.4"
       }
     }
   ],

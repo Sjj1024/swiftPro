@@ -6,111 +6,132 @@
 //
 
 import Alamofire
+import AVKit
+import GIFImage
 import Kingfisher
 import SwiftUI
+import VideoPlayer
+
+private var videoURLs: [URL] = [
+    URL(string: "https://vfx.mtime.cn/Video/2019/06/29/mp4/190629004821240734.mp4")!,
+    URL(string: "https://vfx.mtime.cn/Video/2019/06/27/mp4/190627231412433967.mp4")!,
+    URL(string: "https://vfx.mtime.cn/Video/2019/06/25/mp4/190625091024931282.mp4")!,
+    URL(string: "https://vfx.mtime.cn/Video/2019/06/16/mp4/190616155507259516.mp4")!,
+    URL(string: "https://vfx.mtime.cn/Video/2019/06/15/mp4/190615103827358781.mp4")!,
+    URL(string: "https://vfx.mtime.cn/Video/2019/06/05/mp4/190605101703931259.mp4")!,
+]
 
 struct ContentView: View {
-    // 加载网络数据
-    func load_data() {
-        // 准备一个url
-        let url = "https://github.com/xiaoyouxinqing/PostDemo/raw/master/PostDemo/Resources/PostListData_hot_1.json"
-        // 使用Alamofile发起请求
-        AF.request(url).responseData(completionHandler: { res in
-            // response.result为枚举类型，所以需要使用switch
-            switch res.result {
-                case let .success(Data):
-                    // 将Data类型的数据转为Json字符串
-                    let jsonString = try? JSONSerialization.jsonObject(with: Data)
-                    // 打印json字符串
-                    print("success\(String(describing: jsonString))")
-                case let .failure(error):
-                    print("error\(error)")
-            }
-            // print("响应数据：\(res.result)")
-        })
-    }
+    // 本地文件
+    let localMp4Url = Bundle.main.url(forResource: "localMp4", withExtension: "mp4")
 
-    // get请求
-    func getData() {
-        print("发送get请求")
-        // 准备一个url
-        let url = "https://github.com/xiaoyouxinqing/PostDemo/raw/master/PostDemo/Resources/PostListData_hot_1.json"
-        // 使用Alamofile发起请求，默认是GET
-        AF.request(url).responseData(completionHandler: { res in
-            // response.result为枚举类型，所以需要使用switch
-            switch res.result {
-                case let .success(Data):
-                    // 将Data类型的数据转为Json字符串
-                    let jsonString = try? JSONSerialization.jsonObject(with: Data)
-                    // 打印json字符串
-                    print("success\(String(describing: jsonString))")
-                case let .failure(error):
-                    print("error\(error)")
-            }
-            // print("响应数据：\(res.result)")
-        })
+    // 远程视频
+    let remoteUrl = URL(string: "https://vfx.mtime.cn/Video/2019/06/15/mp4/190615103827358781.mp4")
+    
+    // 获取当前播放时间
+    func getTimeString() -> String {
+        let m = Int(time.seconds / 60)
+        let s = Int(time.seconds.truncatingRemainder(dividingBy: 60))
+        return String(format: "%d:%02d", arguments: [m, s])
     }
+    
+    // 获取视频所有的时间
+    func getTotalDurationString() -> String {
+        let m = Int(totalDuration / 60)
+        let s = Int(totalDuration.truncatingRemainder(dividingBy: 60))
+        return String(format: "%d:%02d", arguments: [m, s])
+    }
+    
+    // 视频列表索引
+    @State var index = 0
+    // 播放状态
+    @State private var play: Bool = true
+    // 视频播放时间
+    @State private var time: CMTime = .zero
+    // 是否自动播放
+    @State private var autoReplay: Bool = true
+    // 是否开启声音（mute：沉默的，无声的）
+    @State private var mute: Bool = false
+    // 视频播放状态文字提示
+    @State private var stateText: String = ""
+    // 总共持续时间
+    @State private var totalDuration: Double = 0
+    // 播放速度
+    @State private var speedRate: Float = 1.2
 
-    // post请求
-    func postData() {
-        print("发送post请求")
-        let urlStr = "https://api.weixin.qq.com/wxa/business/getuserphonenumber"
-        // payload 数据
-        let payload = ["name": "hibo", "password": "123456"]
-        AF.request(urlStr, method: .post, parameters: payload).responseJSON { response in
-            switch response.result {
-                case let .success(json):
-                    print("post response: \(json)")
-                case let .failure(error):
-                    print("error:\(error)")
-            }
-        }
-    }
-
-    // 下载文件
-    func downFile() {
-        print("下载文件")
-        let url = "https://hadoappusage.oss-cn-shanghai.aliyuncs.com/static/mini_image/10003.jpg"
-        // 指定下载文件夹
-        let downDir = DownloadRequest.suggestedDownloadDestination(for: .documentDirectory)
-        // 发送下载请求
-        AF.download(url, to: downDir).downloadProgress { progress in
-            print("下载进度: \(progress)")
-        }.responseData { response in
-            if let data = response.value {
-                print("下载完成")
-            }
-        }
-    }
-
-    // 上传表单
-    func putForm() {
-        print("上传表单")
-    }
+    // 使用状态来跟踪播放状态
+    @State private var isPlaying = false
 
     var body: some View {
-        VStack {
-            KFImage(URL(string: "https://hadoappusage.oss-cn-shanghai.aliyuncs.com/static/mini_image/10003.jpg")).resizable().frame(height: 200)
-            Button(action: {
-                load_data()
-            }, label: {
-                Text("获取数据").font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/).foregroundColor(.white).padding(10)
-            }).background(.orange).cornerRadius(10)
-            Button(action: /*@START_MENU_TOKEN@*/ {}/*@END_MENU_TOKEN@*/, label: {
-                Text("GET请求").font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/).foregroundColor(.white).padding(10)
-            }).background(.red).cornerRadius(10)
-            Button(action: {
-                postData()
-            }, label: { Text("POST请求").padding(10).font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/).foregroundColor(.white) }).background(.blue).cornerRadius(10)
-            // 下载文件
-            Button(action: {
-                print("下载文件")
-                downFile()
-            }, label: {
-                Text("下载文件").font(/*@START_MENU_TOKEN@*/ .title/*@END_MENU_TOKEN@*/).foregroundColor(.white).padding(10)
-            }).background(.yellow).cornerRadius(10)
-        }
-        .padding()
+        VStack(content: {
+            // 视频播放控制是通过绑定变量来实现的
+            VideoPlayer(url: videoURLs[index % videoURLs.count], play: $play, time: $time)
+                .autoReplay(autoReplay)
+                .mute(mute)
+                .speedRate(speedRate)
+                .onBufferChanged { progress in print("onBufferChanged \(progress)") }
+                .onPlayToEndTime { print("onPlayToEndTime") }
+                .onReplay { print("onReplay") }
+                .onStateChanged { state in
+                    switch state {
+                    case .loading:
+                        self.stateText = "Loading..."
+                    case .playing(let totalDuration):
+                        self.stateText = "Playing!"
+                        self.totalDuration = totalDuration
+                    case .paused(let playProgress, let bufferProgress):
+                        self.stateText = "Paused: play \(Int(playProgress * 100))% buffer \(Int(bufferProgress * 100))%"
+                    case .error(let error):
+                        self.stateText = "Error: \(error)"
+                    }
+                }
+                .aspectRatio(1.78, contentMode: .fit)
+                .cornerRadius(16)
+                .shadow(color: Color.black.opacity(0.7), radius: 6, x: 0, y: 2)
+                .padding()
+            
+            // 视频状态
+            Text(stateText)
+                .padding()
+            
+            // 视频控制：暂停/声音控制/自动重播/后退前进5秒/下一个视频
+            HStack {
+                Button(self.play ? "Pause" : "Play") {
+                    self.play.toggle()
+                }
+
+                Divider().frame(height: 20)
+
+                Button(self.mute ? "Sound Off" : "Sound On") {
+                    self.mute.toggle()
+                }
+
+                Divider().frame(height: 20)
+
+                Button(self.autoReplay ? "Auto Replay On" : "Auto Replay Off") {
+                    self.autoReplay.toggle()
+                }
+            }
+
+            HStack {
+                Button("Backward 5s") {
+                    self.time = CMTimeMakeWithSeconds(max(0, self.time.seconds - 5), preferredTimescale: self.time.timescale)
+                }
+
+                Divider().frame(height: 20)
+                
+                Text("\(getTimeString()) / \(getTotalDurationString())")
+
+                Divider().frame(height: 20)
+
+                Button("Forward 5s") {
+                    self.time = CMTimeMakeWithSeconds(min(self.totalDuration, self.time.seconds + 5), preferredTimescale: self.time.timescale)
+                }
+            }
+
+            Button("Next Video") { self.index += 1 }
+            
+        })
     }
 }
 

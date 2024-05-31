@@ -14,7 +14,12 @@
 		E427A27A2BFC989A004FAAAB /* swiftProTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427A2792BFC989A004FAAAB /* swiftProTests.swift */; };
 		E427A2842BFC989A004FAAAB /* swiftProUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427A2832BFC989A004FAAAB /* swiftProUITests.swift */; };
 		E427A2862BFC989A004FAAAB /* swiftProUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E427A2852BFC989A004FAAAB /* swiftProUITestsLaunchTests.swift */; };
+		E442AF2E2C0579BD0036C8B6 /* GIFImage in Frameworks */ = {isa = PBXBuildFile; productRef = E442AF2D2C0579BD0036C8B6 /* GIFImage */; };
 		E46ADB7B2C005AA4005F7F64 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E46ADB7A2C005AA4005F7F64 /* Kingfisher */; };
+		E4B295362C0585DF004508F4 /* test.gif in Resources */ = {isa = PBXBuildFile; fileRef = E4B295352C0585DF004508F4 /* test.gif */; };
+		E4B295382C0586E3004508F4 /* beautiful.gif in Resources */ = {isa = PBXBuildFile; fileRef = E4B295372C0586E3004508F4 /* beautiful.gif */; };
+		E4B2953B2C05ADB5004508F4 /* VideoPlayer in Frameworks */ = {isa = PBXBuildFile; productRef = E4B2953A2C05ADB5004508F4 /* VideoPlayer */; };
+		E4B2953D2C05B1C2004508F4 /* localMp4.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = E4B2953C2C05B1C2004508F4 /* localMp4.mp4 */; };
 		E4B2B1C12BFCADAE00A91A53 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = E4B2B1C02BFCADAE00A91A53 /* Alamofire */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +51,10 @@
 		E427A27F2BFC989A004FAAAB /* swiftProUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = swiftProUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E427A2832BFC989A004FAAAB /* swiftProUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftProUITests.swift; sourceTree = "<group>"; };
 		E427A2852BFC989A004FAAAB /* swiftProUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftProUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E43630A62C09C9CA00569C6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E4B295352C0585DF004508F4 /* test.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = test.gif; sourceTree = "<group>"; };
+		E4B295372C0586E3004508F4 /* beautiful.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = beautiful.gif; sourceTree = "<group>"; };
+		E4B2953C2C05B1C2004508F4 /* localMp4.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = localMp4.mp4; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +63,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E46ADB7B2C005AA4005F7F64 /* Kingfisher in Frameworks */,
+				E442AF2E2C0579BD0036C8B6 /* GIFImage in Frameworks */,
 				E4B2B1C12BFCADAE00A91A53 /* Alamofire in Frameworks */,
+				E4B2953B2C05ADB5004508F4 /* VideoPlayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -99,8 +110,12 @@
 		E427A2672BFC9899004FAAAB /* swiftPro */ = {
 			isa = PBXGroup;
 			children = (
+				E43630A62C09C9CA00569C6B /* Info.plist */,
 				E427A2682BFC9899004FAAAB /* swiftProApp.swift */,
 				E427A26A2BFC9899004FAAAB /* ContentView.swift */,
+				E4B2953C2C05B1C2004508F4 /* localMp4.mp4 */,
+				E4B295352C0585DF004508F4 /* test.gif */,
+				E4B295372C0586E3004508F4 /* beautiful.gif */,
 				E427A26C2BFC9899004FAAAB /* Assets.xcassets */,
 				E427A26E2BFC9899004FAAAB /* Preview Content */,
 			);
@@ -158,6 +173,8 @@
 			packageProductDependencies = (
 				E4B2B1C02BFCADAE00A91A53 /* Alamofire */,
 				E46ADB7A2C005AA4005F7F64 /* Kingfisher */,
+				E442AF2D2C0579BD0036C8B6 /* GIFImage */,
+				E4B2953A2C05ADB5004508F4 /* VideoPlayer */,
 			);
 			productName = swiftPro;
 			productReference = E427A2652BFC9899004FAAAB /* swiftPro.app */;
@@ -234,6 +251,8 @@
 			packageReferences = (
 				E427A2922BFC9D8C004FAAAB /* XCRemoteSwiftPackageReference "Alamofire" */,
 				E46ADB792C005A96005F7F64 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E442AF2C2C0579910036C8B6 /* XCRemoteSwiftPackageReference "GIFImage" */,
+				E4B295392C05ABA5004508F4 /* XCRemoteSwiftPackageReference "VideoPlayer" */,
 			);
 			productRefGroup = E427A2662BFC9899004FAAAB /* Products */;
 			projectDirPath = "";
@@ -252,6 +271,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E427A2702BFC9899004FAAAB /* Preview Assets.xcassets in Resources */,
+				E4B295362C0585DF004508F4 /* test.gif in Resources */,
+				E4B2953D2C05B1C2004508F4 /* localMp4.mp4 in Resources */,
+				E4B295382C0586E3004508F4 /* beautiful.gif in Resources */,
 				E427A26D2BFC9899004FAAAB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,12 +467,14 @@
 				DEVELOPMENT_TEAM = 5C7Q7ZTKVG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = swiftPro/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -475,12 +499,14 @@
 				DEVELOPMENT_TEAM = 5C7Q7ZTKVG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = swiftPro/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -616,6 +642,14 @@
 				minimumVersion = 5.9.1;
 			};
 		};
+		E442AF2C2C0579910036C8B6 /* XCRemoteSwiftPackageReference "GIFImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/igorcferreira/GIFImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.2;
+			};
+		};
 		E46ADB792C005A96005F7F64 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -624,13 +658,31 @@
 				minimumVersion = 7.11.0;
 			};
 		};
+		E4B295392C05ABA5004508F4 /* XCRemoteSwiftPackageReference "VideoPlayer" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/wxxsw/VideoPlayer";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.4;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		E442AF2D2C0579BD0036C8B6 /* GIFImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E442AF2C2C0579910036C8B6 /* XCRemoteSwiftPackageReference "GIFImage" */;
+			productName = GIFImage;
+		};
 		E46ADB7A2C005AA4005F7F64 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = E46ADB792C005A96005F7F64 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		E4B2953A2C05ADB5004508F4 /* VideoPlayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E4B295392C05ABA5004508F4 /* XCRemoteSwiftPackageReference "VideoPlayer" */;
+			productName = VideoPlayer;
 		};
 		E4B2B1C02BFCADAE00A91A53 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
